@@ -38,7 +38,8 @@ public class SeriesFragment extends Fragment {
     private OnFragmentInteractionListener mListener;
         RecyclerView rv;
         serieAdapter adapter;
-        ArrayList<serie> series,series2;
+        ArrayList<serie> series;
+        ArrayList<serie> series2;
         LinearLayoutManager lManager;
     public SeriesFragment() {
         // Required empty public constructor
@@ -90,10 +91,10 @@ public class SeriesFragment extends Fragment {
             @Override
             public void onVerClick(View v, int position) {
                 if (series.get(position).isCheck()) {
+                    FavoritosFragment fragment=new FavoritosFragment();
                     Bundle bundle = new Bundle();
                     series2.add(series.get(position));
-                    bundle.putSerializable("bool",series2.get(position));
-                    FavoritosFragment fragment=new FavoritosFragment();
+                    bundle.putSerializable("bool",series2);
                     fragment.setArguments(bundle);
                     FragmentManager fragmentmanager = getFragmentManager();
                     fragmentmanager.beginTransaction().replace(R.id.framefavoritos,fragment).commit();
@@ -130,7 +131,6 @@ public class SeriesFragment extends Fragment {
         series = new ArrayList<>();
         series.add(new serie("The Walking Dead", "13", R.drawable.twd, " TV show created by Robert Kirgman",false));
         series.add(new serie("Game of Thrones", "13",R.drawable.got, " Serie de TV famosa de FOX",false ));
-        series.add(new serie("Breaking Bad", "13", R.drawable.bb, " La metanfetamina azul es la mejor :)",false));
         series.add(new serie("Breaking Bad", "13", R.drawable.bb, " La metanfetamina azul es la mejor :)",false));
 
     }

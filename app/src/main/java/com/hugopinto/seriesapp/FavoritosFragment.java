@@ -37,7 +37,8 @@ public class FavoritosFragment extends Fragment {
     private OnFragmentInteractionListener mListener;
     RecyclerView rv;
     serieAdapter adapter;
-    ArrayList<serie> series,series2;
+    ArrayList<serie> series;
+    ArrayList<serie> series2;
     Bundle bundle;
     Iterator iterator;
     LinearLayoutManager lManager;
@@ -84,32 +85,25 @@ public class FavoritosFragment extends Fragment {
         bundle=getArguments();
         lManager= new LinearLayoutManager(getContext());
         rv.setLayoutManager(lManager);
-        indice();
         adapter=new serieAdapter(series) {
             @Override
             public void onVerClick(View v, int position) {
-                contador++;
             }
         };
-        contador++;
-        indice();
-        if(bundle != null){
-            int counter=0;
-            Toast.makeText(vista.getContext(),"favs",Toast.LENGTH_SHORT).show();
-            series2=(ArrayList<series>)bundle.getSerializable("bool");
+        if(bundle != null) {
+            int counter = 0;
+            series2 = (ArrayList<serie>) bundle.getSerializable("bool");
             iterator=series2.listIterator();
             while(iterator.hasNext()){
                 serie serie=(serie)iterator.next();
                 series.add(counter,serie);
                 adapter.notifyItemInserted(counter);
-                
+                adapter.notifyItemRangeChanged(counter,series.size());
+                counter++;
             }
+        }
+        rv.setAdapter(adapter);
         return vista;
-    }
-    public int indice(){
-        int indice=0;
-        indice++;
-        return indice;
     }
 
     // TODO: Rename method, update argument and hook method into UI event
