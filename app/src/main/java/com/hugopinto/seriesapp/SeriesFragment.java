@@ -38,7 +38,7 @@ public class SeriesFragment extends Fragment {
     private OnFragmentInteractionListener mListener;
         RecyclerView rv;
         serieAdapter adapter;
-        ArrayList<serie> series;
+        ArrayList<serie> series,series2;
         LinearLayoutManager lManager;
     public SeriesFragment() {
         // Required empty public constructor
@@ -81,6 +81,7 @@ public class SeriesFragment extends Fragment {
         View vista=inflater.inflate(R.layout.fragment_series, container, false);
         rv=vista.findViewById(R.id.recycler);
         series= new ArrayList<>();
+        series2=new ArrayList<>();
         lManager= new LinearLayoutManager(getContext());
         rv.setLayoutManager(lManager);
         prepareSeries();
@@ -90,7 +91,8 @@ public class SeriesFragment extends Fragment {
             public void onVerClick(View v, int position) {
                 if (series.get(position).isCheck()) {
                     Bundle bundle = new Bundle();
-                    bundle.putSerializable("bool",series.get(position));
+                    series2.add(series.get(position));
+                    bundle.putSerializable("bool",series2.get(position));
                     FavoritosFragment fragment=new FavoritosFragment();
                     fragment.setArguments(bundle);
                     FragmentManager fragmentmanager = getFragmentManager();

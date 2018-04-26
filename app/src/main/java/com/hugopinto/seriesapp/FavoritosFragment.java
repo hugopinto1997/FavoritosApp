@@ -13,6 +13,7 @@ import android.view.ViewGroup;
 import android.widget.Toast;
 
 import java.util.ArrayList;
+import java.util.Iterator;
 
 
 /**
@@ -36,9 +37,11 @@ public class FavoritosFragment extends Fragment {
     private OnFragmentInteractionListener mListener;
     RecyclerView rv;
     serieAdapter adapter;
-    ArrayList<serie> series;
+    ArrayList<serie> series,series2;
     Bundle bundle;
+    Iterator iterator;
     LinearLayoutManager lManager;
+    private int contador=0;
     public FavoritosFragment() {
         // Required empty public constructor
     }
@@ -77,27 +80,36 @@ public class FavoritosFragment extends Fragment {
         View vista=inflater.inflate(R.layout.fragment_favoritos, container, false);
         rv=vista.findViewById(R.id.fav);
         series= new ArrayList<>();
+        series2=new ArrayList<>();
+        bundle=getArguments();
         lManager= new LinearLayoutManager(getContext());
         rv.setLayoutManager(lManager);
+        indice();
         adapter=new serieAdapter(series) {
             @Override
             public void onVerClick(View v, int position) {
+                contador++;
             }
         };
+        contador++;
+        indice();
         if(bundle != null){
+            int counter=0;
             Toast.makeText(vista.getContext(),"favs",Toast.LENGTH_SHORT).show();
-            serie ser=(serie) bundle.getSerializable("bool");
-            series.add(0,ser);
-            adapter.notifyItemInserted(0);
-            adapter.notifyItemRangeChanged(0,series.size());
-
-        }else{
-            Toast.makeText(vista.getContext(),"vacio",Toast.LENGTH_SHORT).show();
-
-        }
-
-        rv.setAdapter(adapter);
+            series2=(ArrayList<series>)bundle.getSerializable("bool");
+            iterator=series2.listIterator();
+            while(iterator.hasNext()){
+                serie serie=(serie)iterator.next();
+                series.add(counter,serie);
+                adapter.notifyItemInserted(counter);
+                
+            }
         return vista;
+    }
+    public int indice(){
+        int indice=0;
+        indice++;
+        return indice;
     }
 
     // TODO: Rename method, update argument and hook method into UI event
