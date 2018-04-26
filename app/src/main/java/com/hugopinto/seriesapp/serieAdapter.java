@@ -66,11 +66,11 @@ public abstract class serieAdapter extends  RecyclerView.Adapter<serieAdapter.Se
             public void onCheckedChanged(CompoundButton buttonView, boolean isChecked) {
                 series.get(position).setCheck(isChecked);
                 onVerClick(buttonView, position);
-                /*if (series.get(position).isCheck()) {
+                if (series.get(position).isCheck()) {
                     series.remove(position);
                     notifyItemRemoved(position);
                     notifyItemRangeChanged(position, series.size());
-                }*/
+                }
             }
         });
 
