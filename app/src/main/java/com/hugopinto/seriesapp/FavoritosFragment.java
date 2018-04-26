@@ -97,6 +97,14 @@ public class FavoritosFragment extends Fragment {
             while(iterator.hasNext()){
                 serie serie=(serie)iterator.next();
                 series.add(counter,serie);
+                int i=0;
+                for(i=0;i<counter;i++){
+                    if(series.get(i)==series.get(counter)) {
+                        series.remove(i);
+                        series2.remove(i);
+                        break;
+                    }
+                }
                 adapter.notifyItemInserted(counter);
                 adapter.notifyItemRangeChanged(counter,series.size());
                 counter++;
