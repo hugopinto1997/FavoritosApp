@@ -5,6 +5,7 @@ import android.net.Uri;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentManager;
+import android.support.v7.widget.GridLayoutManager;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
@@ -40,7 +41,7 @@ public class SeriesFragment extends Fragment {
         serieAdapter adapter;
         ArrayList<serie> series;
         ArrayList<serie> series2;
-        LinearLayoutManager lManager;
+        GridLayoutManager lManager;
     public SeriesFragment() {
         // Required empty public constructor
     }
@@ -83,7 +84,7 @@ public class SeriesFragment extends Fragment {
         rv=vista.findViewById(R.id.recycler);
         series= new ArrayList<>();
         series2=new ArrayList<>();
-        lManager= new LinearLayoutManager(getContext());
+        lManager= new GridLayoutManager(getContext(),);
         rv.setLayoutManager(lManager);
         prepareSeries();
 

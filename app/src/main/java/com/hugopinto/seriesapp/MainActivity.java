@@ -1,5 +1,7 @@
 package com.hugopinto.seriesapp;
 
+import android.app.SearchManager;
+import android.content.Context;
 import android.net.Uri;
 import android.support.design.widget.TabLayout;
 import android.support.design.widget.FloatingActionButton;
@@ -21,16 +23,14 @@ import android.view.MenuItem;
 import android.view.View;
 import android.view.ViewGroup;
 
+import android.widget.SearchView;
 import android.widget.TextView;
 import android.widget.Toast;
 
 import java.util.ArrayList;
 
 public class MainActivity extends AppCompatActivity implements SeriesFragment.OnFragmentInteractionListener,FavoritosFragment.OnFragmentInteractionListener {
-    RecyclerView rv;
-    serieAdapter adapter;
-    ArrayList<serie> series;
-    LinearLayoutManager lManager;
+
     /**
      * The {@link android.support.v4.view.PagerAdapter} that will provide
      * fragments for each of the sections. We use a
@@ -52,9 +52,6 @@ public class MainActivity extends AppCompatActivity implements SeriesFragment.On
         setContentView(R.layout.activity_main);
 
 
-
-
-
         Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
         // Create the adapter that will return a fragment for each of the three
@@ -71,18 +68,19 @@ public class MainActivity extends AppCompatActivity implements SeriesFragment.On
         tabLayout.addOnTabSelectedListener(new TabLayout.ViewPagerOnTabSelectedListener(mViewPager));
 
 
-
-
     }
-
 
 
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
         // Inflate the menu; this adds items to the action bar if it is present.
         getMenuInflater().inflate(R.menu.menu_main, menu);
+
+
+
         return true;
     }
+
 
     @Override
     public boolean onOptionsItemSelected(MenuItem item) {

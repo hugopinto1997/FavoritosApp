@@ -21,6 +21,7 @@ import android.widget.Toast;
 
 import java.util.ArrayList;
 
+import static android.support.v4.content.ContextCompat.createDeviceProtectedStorageContext;
 import static android.support.v4.content.ContextCompat.startActivity;
 
 public abstract class serieAdapter extends  RecyclerView.Adapter<serieAdapter.SerieViewHolder>{
@@ -40,7 +41,6 @@ public abstract class serieAdapter extends  RecyclerView.Adapter<serieAdapter.Se
             card=itemView.findViewById(R.id.card_view);
             name=itemView.findViewById(R.id.name);
             img=itemView.findViewById(R.id.img);
-            btn=itemView.findViewById(R.id.boton);
 
 
         }
@@ -61,18 +61,7 @@ public abstract class serieAdapter extends  RecyclerView.Adapter<serieAdapter.Se
     public void onBindViewHolder(SerieViewHolder holder, final int position){
         holder.name.setText(series.get(position).getName());
         holder.img.setImageResource(series.get(position).getImg());
-        holder.btn.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener(){
-            @Override
-            public void onCheckedChanged(CompoundButton buttonView, boolean isChecked) {
-                series.get(position).setCheck(isChecked);
-                onVerClick(buttonView, position);
-                if (series.get(position).isCheck()) {
-                    series.remove(position);
-                    notifyItemRemoved(position);
-                    notifyItemRangeChanged(position, series.size());
-                }
-            }
-        });
+
 
 
     }

@@ -36,16 +36,7 @@
             android:textAppearance="@android:style/TextAppearance.Large"
             android:text="title"/>
         
-        
-        <CheckBox
-            android:layout_width="wrap_content"
-            android:id="@+id/boton"
-            style="?android:attr/starStyle"
-            android:backgroundTint="@color/blanco"
-            android:shadowColor="@color/blanco"
-            android:layout_height="wrap_content"
-            android:background="@color/blanco"
-            android:text="Valorar"/>
+
 
     </LinearLayout>
 
